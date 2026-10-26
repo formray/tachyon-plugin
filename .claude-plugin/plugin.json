@@ -1,0 +1,11 @@
+{
+  "name": "tachyon",
+  "displayName": "Tachyon GPU monitor",
+  "version": "1.0.1",
+  "description": "Read-only view of this Windows PC's NVIDIA GPU: why it is slow, VRAM forecast, crash flight recorder and render job history, through Tachyon's local MCP server.",
+  "author": { "name": "Formray", "url": "https://github.com/formray" },
+  "homepage": "https://github.com/formray/tachyon",
+  "repository": "https://github.com/formray/tachyon",
+  "license": "MIT OR Apache-2.0",
+  "keywords": ["tachyon", "nvidia", "gpu", "vram", "render"]
+}

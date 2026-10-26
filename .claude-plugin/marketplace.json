@@ -1,0 +1,17 @@
+{
+  "name": "formray",
+  "owner": { "name": "Formray", "url": "https://formray.io" },
+  "metadata": {
+    "description": "Formray plugins for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "tachyon",
+      "source": "./",
+      "description": "Read-only view of this Windows PC's NVIDIA GPU: why it is slow, VRAM forecast, crash flight recorder and render job history, through Tachyon's local MCP server.",
+      "version": "1.0.1",
+      "category": "monitoring",
+      "homepage": "https://github.com/formray/tachyon"
+    }
+  ]
+}

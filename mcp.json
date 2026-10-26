@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "tachyon": {
+      "type": "stdio",
+      "command": "tachyon",
+      "args": ["mcp"]
+    }
+  }
+}
