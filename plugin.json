@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "tachyon",
-  "version": "1.1.0",
-  "description": "Read-only view of this Windows PC's NVIDIA GPU: why it is slow, VRAM forecast, crash diagnosis and flight recorder, pre-render VRAM check and render job history, through Tachyon's local MCP server.",
+  "version": "1.2.0",
+  "description": "Read-only view of this Windows PC's NVIDIA GPU: why it is slow, VRAM forecast and VRAM per process, crash diagnosis and flight recorder, PCIe link health, pre-render VRAM check and marked render job reports, through Tachyon's local MCP server.",
   "author": { "name": "Formray", "url": "https://github.com/formray" },
   "homepage": "https://github.com/formray/tachyon",
   "repository": "https://github.com/formray/tachyon",

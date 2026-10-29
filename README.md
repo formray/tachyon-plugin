@@ -1,6 +1,6 @@
 # Tachyon plugin
 
-[![Tachyon 1.1.0](https://img.shields.io/github/v/release/formray/tachyon?label=Tachyon)](https://github.com/formray/tachyon/releases/latest)
+[![Tachyon 1.2.0](https://img.shields.io/github/v/release/formray/tachyon?label=Tachyon)](https://github.com/formray/tachyon/releases/latest)
 [![MCP Registry: io.github.formray/tachyon](https://img.shields.io/badge/MCP%20Registry-io.github.formray%2Ftachyon-6f42c1.svg)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.formray/tachyon)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#licence)
 [![Windows 10/11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078d4.svg)](#requirements)
@@ -18,7 +18,8 @@
 By [Formray](https://formray.io).
 
 Ask things like *"why is my render slow?"*, *"will this model fit in VRAM?"*, *"why did
-my PC switch off?"*, *"will this 4K render fit?"* or *"was this render faster than last time?"*. The
+my PC switch off?"*, *"will this 4K render fit?"*, *"who was using VRAM at 18:20?"* or
+*"was this render faster than last time?"*. The
 agent answers from Tachyon's live readings, its flight recorder and its job history.
 
 ## What it contains
@@ -35,8 +36,9 @@ No executables, scripts or hooks. Tachyon itself is installed separately.
 ## Requirements
 
 - Windows 10 or 11, 64-bit, with an NVIDIA GPU and its driver.
-- **Tachyon 1.1.0 or later**, with `tachyon` on PATH (with 1.0.1, `diagnose_crash` and
-  `preflight` are missing). Download `Tachyon_v1.1.0.zip` from
+- **Tachyon 1.2.0 or later**, with `tachyon` on PATH (with 1.1.0, `get_job_reports`,
+  `get_process_vram` and `get_pcie_link` are missing; with 1.0.1 also `diagnose_crash` and
+  `preflight`). Download `Tachyon_v1.2.0.zip` from
   the [releases](https://github.com/formray/tachyon/releases/latest), unzip it to a folder
   of your own (for example `C:\Tools\Tachyon`) and add that folder to your user PATH.
   winget (`Formray.Tachyon`) and Scoop packages are prepared and will put it on PATH for
@@ -67,9 +69,9 @@ codex mcp add tachyon -- tachyon mcp
 then copy `skills/tachyon-gpu` into `~/.codex/skills/`.
 
 **Claude Desktop** uses the one-click extension instead: download
-`tachyon-1.1.0-windows-x64.mcpb` from the
+`tachyon-1.2.0-windows-x64.mcpb` from the
 [Tachyon release](https://github.com/formray/tachyon/releases/latest) and open it
-(SHA-256 `ce8b08b09d7566937802e80276d9ef1aa0cdc2ec7c57e19f1534944dd7f20448`, also in the
+(SHA-256 `f37a87a4200f4cd33f0caf8e641ba64d87cf3d958c923d4493245257143bb59e`, also in the
 release's `SHA256SUMS.txt`).
 
 Tachyon's MCP server is also listed in the official
@@ -82,9 +84,10 @@ as `io.github.formray/tachyon`.
   It listens on no port.
 - **No network access**, no telemetry, no downloads, no credentials. Nothing leaves the PC
   except what the agent itself puts in its conversation.
-- Nine tools, all read-only (`readOnlyHint: true`): `get_status`, `get_bottleneck`,
+- Twelve tools, all read-only (`readOnlyHint: true`): `get_status`, `get_bottleneck`,
   `get_vram_forecast`, `get_processes`, `get_blackbox`, `get_history`,
-  `compare_last_run`, `diagnose_crash` and `preflight`. They read the NVIDIA driver (NVML), the Windows Event Log and
+  `compare_last_run`, `diagnose_crash`, `preflight`, `get_pcie_link`, `get_process_vram`
+  and `get_job_reports`. They read the NVIDIA driver (NVML), the Windows Event Log and
   Tachyon's own files in `%LOCALAPPDATA%\Tachyon`. They never change clocks, fans, power
   limits, processes or files.
 - Process and job names can say what you are working on; the skill tells the agent not to
@@ -95,6 +98,11 @@ as `io.github.formray/tachyon`.
 
 ## Changes
 
+- **1.2.0:** for Tachyon 1.2.0. The skill covers `get_job_reports` (render jobs a script
+  marks with `tachyon mark start|end --job NAME`, compared with the previous run of the
+  same job), `get_process_vram` (who held VRAM and when), `get_pcie_link` (idle power
+  saving is normal; only a degraded link matters) and `diagnose_crash.last_seconds`
+  (100 ms readings before a stop). The MCP server still never writes markers.
 - **1.1.0:** for Tachyon 1.1.0. The skill covers `diagnose_crash` (probable cause of a crash
   or power-off, with evidence and advice) and `preflight` (will a render fit in VRAM?), and
   `get_blackbox`'s `since`/`until`/`session`.
